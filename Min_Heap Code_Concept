@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    priority_queue<int,vector<int>,greater<int> > pq;
+    priority_queue<int,vector<int>,greater<int> > pqremove;
+
+
+    int q;
+    cin>>q;
+
+    for(int i=0;i<q;i++)
+    {
+        int t,y;
+        cin>>t;
+
+        if(t == 1)
+        {
+            cin>>y;
+            pq.push(y);
+        }
+
+        if(t == 2)
+        {
+            cin>>y;
+            pqremove.push(y);
+        }
+
+        if(t == 3)
+        {
+            while(!pqremove.empty() && pqremove.top() == pq.top())
+            {
+                pq.pop();
+                pqremove.pop();
+            }
+            cout<<pq.top();
+        }
+    }
+
+return 0;
+}
