@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()                                                       
+{
+    int n;
+    cin>>n;
+    priority_queue<int,vector<int>,greater<int> > q2;
+    priority_queue<int>q1;
+
+    float median=0;
+    float temp;
+
+    while(n--)
+    {
+        cin>>temp;
+
+        if(q1.empty() || q1.top()>=temp)
+            q1.push(temp);
+        else
+            q2.push(temp);
+
+        if(q1.size() > q2.size()+1)
+        {
+            q2.push(q1.top());
+            q1.pop();
+        }
+        else if(q2.size() > q1.size()+1)
+        {
+               q1.push(q2.top());
+               q2.pop();
+        }
+
+        if(q1.size()==q2.size())
+        {
+            median=(q1.top() + q2.top()) / 2.0;
+        }
+        else
+        {
+            median = (q1.size() > q2.size()) ?(q1.top() * 1.0) : (q2.top() * 1.0);
+        }
+
+        cout<<median<<endl;
+    }
+
+return 0;
+}
