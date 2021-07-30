@@ -1,0 +1,43 @@
+#includde<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n,k;
+    cin>>n>>k;
+    priority_queue<int,vector<int>,greater<int> > pq;
+
+    for(int i=0;i<n;i++)
+    {
+        int x;
+        cin>>x;
+        pq.push(x);
+    }
+
+    int sum1 = 0,sum2 = 0,total = 0,count = 0;
+
+    for(int i=0;i<n;i++)
+    {
+        while(pq.top() < k && count < n)
+        {
+            if(!pq.empty())
+            {
+                sum1 = pq.top();
+                pq.pop();
+            }
+            if(!pq.empty())
+            {
+                sum2 = pq.top();
+                pq.pop();
+            }
+
+            total = (sum1 * 1) + (sum2 * 2);
+            pq.push(total);
+
+            count++;
+        }
+    }
+    (count > n)?cout<<-1:cout<<count;
+
+return 0;
+}
